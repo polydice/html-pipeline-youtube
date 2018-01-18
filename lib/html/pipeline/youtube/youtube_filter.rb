@@ -20,11 +20,13 @@ module HTML
           wmode = context[:video_wmode]
           autoplay = context[:video_autoplay] || false
           hide_related = context[:video_hide_related] || false
-          src = "//www.youtube.com/embed/#{youtube_id}"
+          enable_js_api = context[:enable_js_api] || false
+          src = "https://www.youtube.com/embed/#{youtube_id}"
           params = []
           params << "wmode=#{wmode}" if wmode
           params << "autoplay=1" if autoplay
           params << "rel=0" if hide_related
+          params << 'enablejsapi=1' if enable_js_api
           src += "?#{params.join '&'}" unless params.empty?
 
           # Prefix with two "\n" for compatibility with markup such as Markdown:
